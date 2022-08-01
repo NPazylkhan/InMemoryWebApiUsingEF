@@ -12,9 +12,11 @@ namespace InMemoryWebApiUsingEF.Controllers
     public class EmployeeController : ControllerBase
     {
         private const string employeeListCacheKey = "employeeList";
+
         private readonly IDataRepository<Employee> _dataRepository;
         private IMemoryCache _cache;
         private ILogger<EmployeeController> _logger;
+
         private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
 
         public EmployeeController(IDataRepository<Employee> dataRepository,
